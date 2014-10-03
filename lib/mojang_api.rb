@@ -2,6 +2,7 @@ require "httparty"
 
 require "mojang_api/version"
 require "mojang_api/profile"
+require "mojang_api/whitelist"
 
 module MojangApi
   def self.get_profile_from_name(name, opts={})
