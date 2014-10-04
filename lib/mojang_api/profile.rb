@@ -15,8 +15,10 @@ module MojangApi
     end
     
     def uuid=(new_uuid)
-      new_uuid = new_uuid.strip.tr('-', '')
-      raise "UUID is incorrect length." if new_uuid.length != 32
+      if new_uuid
+        new_uuid = new_uuid.strip.tr('-', '')
+        raise "UUID is incorrect length." if new_uuid.length != 32
+      end
       @uuid = new_uuid
     end
     
@@ -33,6 +35,7 @@ module MojangApi
       opts[:query] = { at: at.to_i } if at
       response = self.class.get("/users/profiles/#{@game}/#{@name}", opts)
       @uuid = response['id']
+      @name = response['name']
       @uuid_time = at.nil? ? Time.now : at
       @uuid
     end

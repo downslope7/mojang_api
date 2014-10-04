@@ -14,6 +14,10 @@ module MojangApi
         self
       end
       
+      def to_s
+        serialize
+      end
+      
       def save_to(filename)
         File.open(filename, "w") { |f| f.write(serialize) }
       end
